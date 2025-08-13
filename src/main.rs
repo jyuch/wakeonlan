@@ -49,7 +49,10 @@ fn main() -> std::io::Result<()> {
     socket.set_broadcast(true)?;
 
     let broadcast_addr = Ipv4Addr::new(255, 255, 255, 255);
-    socket.send_to(&packet, (broadcast_addr, 7))?;
+
+    for _ in 0..8 {
+        socket.send_to(&packet, (broadcast_addr, 7))?;
+    }
 
     Ok(())
 }
